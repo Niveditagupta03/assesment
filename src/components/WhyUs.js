@@ -1,14 +1,12 @@
-import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import WhyUs1 from "./WhyUs1";
 
-// Import Google Font
+// Global styles (Google Font loaded externally for better performance)
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
   }
 `;
 
@@ -25,72 +23,20 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: "Roboto", sans-serif; /* Custom font */
+  font-family: "Roboto Condensed", sans-serif; /* Use the imported font */
   font-size: 3.5rem;
-  font-weight: 700; /* Bold */
+  font-weight: 700;
   margin-bottom: 1rem;
-  padding: 0 570px 0 0;
+  padding: 0 450px 20px 0;
 `;
 
-const TabsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 835px;
-`;
-const Tab = styled.label`
-  background-color: ${(props) =>
-    props.isActive ? props.activeColor : props.bgColor || "#ffd700"};
-  height: 50px;
-  border-radius: 15px 180px 0 0;
-  clip-path: ellipse(100% 100% at 50% 50%);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: ${(props) =>
-    props.width || "100px"}; /* Default width if not specified */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-  margin-left: ${(props) => (props.isLast ? "-10px" : "-5px")};
-  z-index: ${(props) => (props.isActive ? 2 : 1)};
-  //transform: ${(props) => (props.isActive ? "translateX(5px)" : "")};
-
-  &:first-child {
-    margin-left: 0; /* Ensure the first tab does not have a negative margin */
-  }
-`;
-
-const tabWidths = {
-  1: "400px", // Width for "Tailored Solutions"
-  2: "300px", // Width for "Expertise and Innovation"
-  3: "250px", // Width for "Fast, Reliable Delivery"
-  4: "180px", // Width for "Full Transparency"
-  5: "90px", // Width for "Long-term Support"
-};
-const ContentContainer = styled.div`
-  background-color: ${(props) => props.bgColor || "#ffd700"};
-  padding: 2rem;
-  border-radius: 0 0 15px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  width: 835px;
-  box-sizing: border-box;
-  overflow-y: auto;
-`;
-
-const TextContent = styled.div`
-  max-width: 80%;
-  text-align: left;
-`;
-
-const tabs = [
+// Updated tabs array to use 'width' instead of 'length'
+export const tabs = [
   {
     id: 1,
     label: "Tailored Solutions",
+    colour: "#ffd700",
+    width: "616px", // Changed from 'length' to 'width'
     content: (
       <div
         style={{
@@ -125,13 +71,11 @@ const tabs = [
   {
     id: 2,
     label: "Expertise and Innovation",
+    colour: "#6a5acd",
+    width: "610px", // Changed from 'length' to 'width'
     content: (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <img
           src="/engine.png"
@@ -145,14 +89,12 @@ const tabs = [
             alignItems: "center",
           }}
         >
-          <div>
-            <h1>Expertise and Innovation</h1>
-            <p>
-              With a focus on UI/UX design and website development, our team
-              combines industry knowledge with the latest tools to create
-              cutting-edge solutions.
-            </p>
-          </div>
+          <h1>Expertise and Innovation</h1>
+          <p>
+            With a focus on UI/UX design and website development, our team
+            combines industry knowledge with the latest tools to create
+            cutting-edge solutions.
+          </p>
         </div>
       </div>
     ),
@@ -161,13 +103,11 @@ const tabs = [
   {
     id: 3,
     label: "Fast, Reliable Delivery",
+    colour: "#ff69b4",
+    width: "600px", // Changed from 'length' to 'width'
     content: (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <img
           src="/engine.png"
@@ -181,14 +121,11 @@ const tabs = [
             alignItems: "center",
           }}
         >
-          <div>
-            <h1>Fast, Reliable Delivery</h1>
-            <p>
-              We prioritize timely delivery without compromising quality,
-              ensuring your project is completed on schedule and exceeds
-              expectations.
-            </p>
-          </div>
+          <h1>Fast, Reliable Delivery</h1>
+          <p>
+            We prioritize timely delivery without compromising quality, ensuring
+            your project is completed on schedule and exceeds expectations.
+          </p>
         </div>
       </div>
     ),
@@ -197,13 +134,11 @@ const tabs = [
   {
     id: 4,
     label: "Full Transparency",
+    colour: "#ffa500",
+    width: "410px", // Changed from 'length' to 'width'
     content: (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <img
           src="/engine.png"
@@ -217,13 +152,11 @@ const tabs = [
             alignItems: "center",
           }}
         >
-          <div>
-            <h1>Full Transparency</h1>
-            <p>
-              We keep you informed at every step, maintaining open communication
-              to ensure the project reflects your vision.
-            </p>
-          </div>
+          <h1>Full Transparency</h1>
+          <p>
+            We keep you informed at every step, maintaining open communication
+            to ensure the project reflects your vision.
+          </p>
         </div>
       </div>
     ),
@@ -232,13 +165,11 @@ const tabs = [
   {
     id: 5,
     label: "Long-term Support",
+    colour: "#32cd32",
+    width: "190px", // Changed from 'length' to 'width'
     content: (
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         <img
           src="/engine.png"
@@ -252,13 +183,11 @@ const tabs = [
             alignItems: "center",
           }}
         >
-          <div>
-            <h1>Long-term Support</h1>
-            <p>
-              Our commitment doesn’t end with project delivery. We offer ongoing
-              support to help your brand evolve and grow.
-            </p>
-          </div>
+          <h1>Long-term Support</h1>
+          <p>
+            Our commitment doesn’t end with project delivery. We offer ongoing
+            support to help your brand evolve and grow.
+          </p>
         </div>
       </div>
     ),
@@ -267,35 +196,25 @@ const tabs = [
 ];
 
 const PureCssTabs = () => {
-  const [activeTab, setActiveTab] = useState(1);
-
   return (
     <>
       <GlobalStyle />
       <Container>
         <Title>WHY US?</Title>
-        <TabsContainer>
-          {tabs.map((tab, index) => (
-            <Tab
-              key={tab.id}
-              isActive={activeTab === tab.id}
-              bgColor={tab.bgColor}
-              activeColor={tab.bgColor}
-              onClick={() => setActiveTab(tab.id)}
-              width={tabWidths[tab.id]} // Set custom width
-              isLast={index >= 3} // Adjust margin for the last two tabs
-            >
-              {tab.label}
-            </Tab>
-          ))}
-        </TabsContainer>
-        <ContentContainer
-          bgColor={tabs.find((tab) => tab.id === activeTab)?.bgColor}
-        >
-          <TextContent>
-            {tabs.find((tab) => tab.id === activeTab)?.content}
-          </TextContent>
-        </ContentContainer>
+        <WhyUs1 />
+        <img
+          src="/Stamp.png"
+          alt="Stamp"
+          style={{
+            position: "absolute",
+            bottom: "75px",
+            left: "270px",
+            width: "160px",
+            height: "auto",
+            margin: "10px",
+            zIndex: 999,
+          }}
+        />
       </Container>
     </>
   );
